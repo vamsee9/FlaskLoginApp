@@ -7,8 +7,8 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = 'J9xE4EWy89Sd1A45Q05C' # for salting passwords
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///dn.sqlite'
+    app.config['SECRET_KEY'] = 'kYp3s6v9y$B?E(H+MbQeThWmZq4t7w!z' # for salting passwords
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
     db.init_app(app)
 
