@@ -3,6 +3,18 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from .models import User
 from . import db
+import sqlite3
+
+# import psycopg2
+
+
+# try:
+#     conn = psycopg2.connect(database="books", user="postgres",
+#                             password="1998", host="localhost")
+#     print("connected")
+# except:
+#     print("Server Error: unable to connect to the database")
+# mycursor = conn.cursor()
 
 auth = Blueprint('auth', __name__)
 
@@ -59,6 +71,20 @@ def signup_post():
     db.session.commit()
 
     return redirect(url_for('auth.login'))
+
+@auth.route('/admin')
+def admin():
+    con = sqlite3.connect("project/user.sqlite")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("select * from User")
+    rows = cur.fetchall()
+    return render_template("admin.html", rows = rows)
+
+    # mycursor.execute("SELECT * FROM user")
+    # data = mycursor.fetchall()
+    # return render_template('admin.html', data=data)
+
 
 
 @auth.route('/logout')

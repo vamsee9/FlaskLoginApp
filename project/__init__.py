@@ -10,7 +10,8 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = '9OLWxND4o83j4K4igorO'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    # postgresql://postgres:1998@localhost:5432/books
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.sqlite'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
