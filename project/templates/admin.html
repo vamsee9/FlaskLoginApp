@@ -1,36 +1,52 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>List</title>
-</head>
+{% block content %}
 
-<body>
+<style>
+    table.center {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+</style>
 
-    <h3>Misc Information</h3>
-    <table border=5>
+<h3 class="title has-text-info">User Information</h3>
+<div class="table-container">
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
         <thead>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Email</td>
-            
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
         </thead>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </tfoot>
 
         {% for row in rows %}
+        <tbody>
+            <tr>
+                <th>{{row["id"]}}</th>
+                <td>{{row["name"]}}</td>
+                <td>{{row["email"]}}</td>
 
-        <tr>
-            <td>{{row["id"]}}</td>
-            <td>{{row["name"]}}</td>
-            <td>{{row["email"]}}</td>
-            
-        </tr>
+            </tr>
+        </tbody>
+
 
         {% endfor %}
     </table>
-    <br><br>
+</div>
+<br><br>
 
-    <a href="{{ url_for('main.index') }}">Go back to home page</a>
+<a class="has-text-success" href="{{ url_for('main.index') }}">
+    <strong>Exit to home page</strong>
+</a>
 
-</body>
-
-</html>
+{% endblock %}
