@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title has-text-white">
-    Welcome, {{name}}!
-</h1>
+<style>
+    #loggedIn {
+        float: right;
+        margin-top: -300px;
+        margin-right: -50px;
+    }   
+</style>
+<div id="loggedIn">
+    <h1 class="title has-text-black box">
+        Welcome, {{name}}!
+    </h1>
+</div>
+
 {% endblock %}
