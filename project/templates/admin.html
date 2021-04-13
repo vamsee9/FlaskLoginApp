@@ -2,15 +2,6 @@
 
 {% block content %}
 
-<style>
-    table.center {
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-</style>
-
 <h3 class="title has-text-info">User Information</h3>
 <div class="table-container">
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -19,6 +10,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>timestamp</th>
             </tr>
         </thead>
         <tfoot>
@@ -26,6 +18,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>timestamp</th>
             </tr>
         </tfoot>
 
@@ -34,7 +27,8 @@
             <tr>
                 <th>{{row["id"]}}</th>
                 <td>{{row["name"]}}</td>
-                <td>{{row["email"]}}</td>
+                <td><a href="mailto:{{row['email']}}">{{row['email']}}</a></td>
+                <td>{{row["timestamp"]}}</td>
 
             </tr>
         </tbody>

@@ -4,6 +4,7 @@ from flask_login import login_user, logout_user, login_required
 from .models import User
 from . import db
 import sqlite3
+from datetime import datetime
 
 # import psycopg2
 
@@ -54,6 +55,7 @@ def signup_post():
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
+    timestamp = datetime.now()
 
     # if this returns a user, then the email already exists in database
     user = User.query.filter_by(email=email).first()
@@ -64,7 +66,7 @@ def signup_post():
 
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
     new_user = User(email=email, name=name,
-                    password=generate_password_hash(password, method='sha256'))
+                    password=generate_password_hash(password, method='sha256'), timestamp=timestamp)
 
     # add the new user to the database
     db.session.add(new_user)
