@@ -14,8 +14,8 @@
 
 ### Installation
 ---
-- Install all the dependancies using requirements.txt file...
-- ```pip install requirements.txt```
+- Install all the dependencies using requirements.txt file...
+- ```pip install -r requirements.txt```
 
 ### Running
 ---
@@ -40,6 +40,6 @@
 
 # Author
 ---
-- V A M S E E &nbsp; K R I S H N A
+- V A M S E E &nbsp; K R I S H N A A
 
 # Thank You!
