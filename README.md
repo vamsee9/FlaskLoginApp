@@ -1,6 +1,6 @@
 # FlaskLoginApp
 ---
-- This project is simple implementation Login Registration flow in Flask-MySQL AND SQLite.
+- This project is simple implementation Login Registration flow in Flask-MySQL AND postgresql.
 
 ### Modules used
 ---
