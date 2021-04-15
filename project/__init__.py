@@ -11,7 +11,7 @@ def create_app():
 
     app.config['SECRET_KEY'] = '9OLWxND4o83j4K4igorO'
     # postgresql://postgres:1998@localhost:5432/books
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.sqlite'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1998@localhost:5432/book'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
@@ -20,12 +20,12 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    from .models import User
+    from .models import person
 
     @login_manager.user_loader
     def load_user(user_id):
         # since the user_id is just the primary key of our user table, use it in the query for the user
-        return User.query.get(int(user_id))
+        return person.query.get(int(user_id))
     
   
 
