@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from datetime import datetime
-from .models import person, Admin
+from .models import books, person, Admin
 from . import db
 
 
@@ -55,13 +55,14 @@ def signup_post():
 
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
     new_user = person(email=email, name=name,
-                    password=generate_password_hash(password, method='sha256'), timestamp=timestamp)
+                      password=generate_password_hash(password, method='sha256'), timestamp=timestamp)
 
     # add the new user to the database
     db.session.add(new_user)
     db.session.commit()
 
     return redirect(url_for('auth.login'))
+
 
 @auth.route('/adminOP')
 def adminOP():
@@ -70,8 +71,7 @@ def adminOP():
     # cur = con.cursor()
     # cur.execute("select * from books")
     # rows = cur.fetchall()
-    return render_template("adminOP.html", users = person.query.all())
-
+    return render_template("adminOP.html", users=person.query.all())
 
 
 @auth.route('/admin')
@@ -127,6 +127,12 @@ def admin_post():
 #     db.session.commit()
 
 #     return redirect(url_for('auth.admin'))
+
+@auth.route('/search', methods=['POST'])
+def search():
+    isbn=request.form.get("search")
+    book = books.query.all()
+    return render_template('profile.html', book=book, name=isbn)
 
 
 @auth.route('/logout')

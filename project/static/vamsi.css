@@ -1,0 +1,19 @@
+#bg {
+  background-color: #363636;
+}
+
+.search {
+  margin-top  : 15px;
+  margin-right  : 400px;
+  width: 400px;
+}
+
+.c-s{
+   width: 600px;
+}
+
+#loggedIn {
+  float: right;
+  margin-top: -100px;
+  margin-right: -50px;
+}
