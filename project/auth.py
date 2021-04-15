@@ -7,17 +7,6 @@ from . import db
 import sqlite3
 
 
-# import psycopg2
-
-
-# try:
-#     conn = psycopg2.connect(database="books", user="postgres",
-#                             password="1998", host="localhost")
-#     print("connected")
-# except:
-#     print("Server Error: unable to connect to the database")
-# mycursor = conn.cursor()
-
 auth = Blueprint('auth', __name__)
 
 

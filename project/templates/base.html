@@ -29,24 +29,24 @@
             <div id="NavMenu" class="navbar-menu">
                 <div class="navbar-end">
                     <a href="{{ url_for('main.index') }}" class="navbar-item has-text-info">
-                        Home
+                        🏠 Home
                     </a>
                     {% if current_user.is_authenticated %}
                     <a href="{{ url_for('main.profile') }}" class="navbar-item has-text-info">
-                        Profile
+                        👱 Profile
                     </a>
                     {% endif %}
                     {% if not current_user.is_authenticated %}
                     <a href="{{ url_for('auth.login') }}" class="navbar-item has-text-info">
-                        Login
+                       🔓 Login
                     </a>
                     <a href="{{ url_for('auth.signup') }}" class="navbar-item has-text-info">
-                        Sign Up
+                       📝 Sign Up
                     </a>
                     {% endif %}
                     {% if current_user.is_authenticated %}
                     <a href="{{ url_for('auth.logout') }}" class="navbar-item has-text-danger">
-                        Logout
+                       🔒 Logout
                     </a>
                     {% endif %}
                 </div>
