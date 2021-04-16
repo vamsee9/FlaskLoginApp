@@ -16,6 +16,7 @@ class Admin(UserMixin, db.Model):
     name = db.Column(db.String(1000))
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
+    timestamp = db.Column(db.DateTime)
 
 class books(UserMixin, db.Model):
     isbn = db.Column(db.String(100), primary_key=True)

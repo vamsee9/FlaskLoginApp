@@ -1,3 +1,4 @@
+from project.models import person
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
 
@@ -13,6 +14,16 @@ def index():
 @login_required
 def profile():
     return render_template('profile.html', uname=current_user.name)
+
+@main.route('/adminOP')
+@login_required
+def adminOP():
+    return render_template("adminOP.html", users=person.query.all())
+
+
+@errors.app_errorhandler(401)
+def error_401(error):
+    return render_template('errors/401.html'), 401
 
 @errors.app_errorhandler(404)
 def error_404(error):
