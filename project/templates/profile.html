@@ -6,40 +6,32 @@
         Welcome, {{uname}}!
     </h1>
 </div>
-<div class="container has-text-centered">
-    <h3 class="title has-text-info">User Information</h3>
+<div class="container has-text-centered"><br><br>
+    <h3 class="title has-text-info">📚 Books Information</h3>
     <div class="table-container">
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
                 <tr>
-
+                    <th>isbn</th>
                     <th>title</th>
                     <th>author</th>
                     <th>year</th>
                 </tr>
             </thead>
-
             {% for row in book %}
             <tbody>
                 <tr>
-                    {% if row.isbn==name %}
+                    {% if row.isbn==name or row.title==name or row.author==name or row.year==name %}
+                    <th>{{row.isbn}}</th>
                     <th>{{row.title}}</th>
                     <td>{{row.author}}</td>
                     <td>{{row.year}}</a></td>
                     {% endif %}
-
                 </tr>
             </tbody>
-
-
             {% endfor %}
         </table>
     </div>
-    <br><br>
-
-    <a class="button has-text-danger" href="{{ url_for('main.index') }}">
-        <strong>Exit to home page</strong>
-    </a>
 </div>
 
 {% endblock %}

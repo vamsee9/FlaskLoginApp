@@ -2,7 +2,7 @@ from flask import Blueprint, render_template
 from flask_login import login_required, current_user
 
 main = Blueprint('main', __name__)
-
+errors = Blueprint('errors', __name__)
 
 @main.route('/')
 def index():
@@ -13,3 +13,17 @@ def index():
 @login_required
 def profile():
     return render_template('profile.html', uname=current_user.name)
+
+@errors.app_errorhandler(404)
+def error_404(error):
+    return render_template('errors/404.html'), 404
+
+
+@errors.app_errorhandler(403)
+def error_403(error):
+    return render_template('errors/403.html'), 403
+
+
+@errors.app_errorhandler(500)
+def error_500(error):
+    return render_template('errors/500.html'), 500

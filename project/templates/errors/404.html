@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title has-text-white">
+    404 Page not found
+</h1>
+<div>👇</div>
+<a class="has-text-success" href="{{ url_for('main.index') }}">
+    <strong>📚 Books</strong>
+</a>
+
+{% endblock %}

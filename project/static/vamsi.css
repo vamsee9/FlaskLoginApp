@@ -4,6 +4,7 @@
 
 .search {
   margin-top  : 15px;
+  margin-bottom: 15px;
   margin-right  : 400px;
   width: 400px;
 }
@@ -14,6 +15,6 @@
 
 #loggedIn {
   float: right;
-  margin-top: -100px;
+  margin-top: -200px;
   margin-right: -50px;
 }

@@ -66,11 +66,6 @@ def signup_post():
 
 @auth.route('/adminOP')
 def adminOP():
-    # con = sqlite3.connect("project/user.sqlite")
-    # con.row_factory = sqlite3.Row
-    # cur = con.cursor()
-    # cur.execute("select * from books")
-    # rows = cur.fetchall()
     return render_template("adminOP.html", users=person.query.all())
 
 
@@ -99,38 +94,40 @@ def admin_post():
     return redirect(url_for('auth.adminOP'))
 
 
-# @auth.route('/signup')
+# @auth.route('/admin-signup')
 # def signup():
-#     return render_template('signup.html')
+#     return render_template('admin-signup.html')
 
 
-# @auth.route('/signup', methods=['POST'])
-# def signup_post():
+# @auth.route('/admin-signup', methods=['POST'])
+# def adminsignup_post():
 #     email = request.form.get('email')
 #     name = request.form.get('name')
 #     password = request.form.get('password')
 #     timestamp = datetime.now()
 
-#     # if this returns a user, then the email already exists in database
-#     user = User.query.filter_by(email=email).first()
+#     # if this returns a admin, then the email already exists in database
+#     admin = Admin.query.filter_by(email=email).first()
 
-#     if user:  # if a user is found, we want to redirect back to signup page so user can try again
+#     if admin:  # if a user is found, we want to redirect back to signup page so user can try again
 #         flash('Email address already exists')
 #         return redirect(url_for('auth.signup'))
 
 #     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-#     new_user = User(email=email, name=name,
+#     new_admin = Admin(email=email, name=name,
 #                     password=generate_password_hash(password, method='sha256'), timestamp=timestamp)
 
 #     # add the new user to the database
-#     db.session.add(new_user)
+#     db.session.add(new_admin)
 #     db.session.commit()
 
 #     return redirect(url_for('auth.admin'))
 
 @auth.route('/search', methods=['POST'])
 def search():
-    isbn=request.form.get("search")
+    isbn=request.form.get("search") 
+   
+
     book = books.query.all()
     return render_template('profile.html', book=book, name=isbn)
 
