@@ -9,7 +9,7 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = '9OLWxND4o83j4K4igorO'
+    app.config['SECRET_KEY'] = '9O4#$#%^)_$LWxN@#_+(*$j4K4igo$%&^#$rO'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1998@localhost:5432/book'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -19,22 +19,15 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    admin_manager = LoginManager()
-    admin_manager.admin_view = "auth.admin"
-    admin_manager.init_app(app)
+    
 
-    from .models import person, Admin
+    from .models import person
 
     @login_manager.user_loader
     def load_user(user_id):
         # since the user_id is just the primary key of our user table, use it in the query for the user
         return person.query.get(int(user_id))
-    
-    @admin_manager.user_loader
-    def load_admin(admin_id):
-        return Admin.query.get(int(admin_id))
-    
-  
+
 
     # blueprint for auth routes in our app
     from .auth import auth as auth_blueprint
