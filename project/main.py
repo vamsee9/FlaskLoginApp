@@ -1,4 +1,4 @@
-from project.models import person
+from project.models import books, person
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
 
@@ -13,12 +13,23 @@ def index():
 @main.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', uname=current_user.name)
+    return render_template('profile.html', uname = current_user.name)
 
 @main.route('/adminOP')
 @login_required
 def adminOP():
     return render_template("adminOP.html", users=person.query.all())
+
+@main.route('/book/<string:id>')
+@login_required
+def book(id):
+    a = books.query.all()
+    for i in a:
+        if id == i.isbn:
+           title = i.title
+           author = i.author
+           year = i.year
+    return render_template('book.html' ,id=id, title=title, author=author, year=year)
 
 
 @errors.app_errorhandler(401)

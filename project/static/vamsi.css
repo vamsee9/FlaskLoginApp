@@ -2,6 +2,17 @@
   background-color: #363636;
 }
 
+/** Chrome, Safari, Edge, Opera **/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/** Firefox **/
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .search {
   margin-top  : 15px;
   margin-bottom: 15px;
@@ -17,4 +28,72 @@
   float: right;
   margin-top: -200px;
   margin-right: -50px;
+}
+
+.txt-center {
+  text-align: center;
+}
+.hide {
+  display: none;
+}
+
+.clear {
+  float: none;
+  clear: both;
+}
+
+.rating {
+    width: 90px;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+    position: relative;
+}
+
+.rating > label {
+    float: right;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 1.1em;
+    cursor: pointer;
+    color: #000;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input.radio-btn:checked ~ label {
+    color: transparent;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating > input.radio-btn:checked ~ label:before,
+.rating > input.radio-btn:checked ~ label:before {
+    content: "\2605";
+    position: absolute;
+    left: 0;
+    color: #FFD700;
+}
+
+textarea {
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 150px;
+    min-height: 150px;
+    margin-top: 20px;
+    padding: 18px 40px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: #293043;
+    background-color: #ddd;
+}
+
+#the-count {
+    float: right;
+    padding: 0.1rem 0 0 0;
+    font-size: 0.875rem;
 }

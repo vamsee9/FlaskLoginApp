@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="table-container columns is-centered txt-center">
+    <table class="table is-bordered is-striped is-hoverable has-text-left">
+
+        <tr>
+            <th>ISBN</th>
+            <td>{{id}}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{title}}</td>
+        </tr>
+        <tr>
+            <th>Author</th>
+            <td>{{author}}</td>
+        </tr>
+        <tr>
+            <th>Year</th>
+            <td>{{year}}</td>
+        </tr>
+        <tr>
+            <th>Rate this "{{title}}" book 👉</th>
+            <td>
+                <form action="" method="POST">
+                    <div class="rating">
+                        <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+                        <label for="star5">☆</label>
+                        <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+                        <label for="star4">☆</label>
+                        <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                        <label for="star3">☆</label>
+                        <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+                        <label for="star2">☆</label>
+                        <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+                        <label for="star1">☆</label>
+                        <div class="clear"></div>
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+<h1 class="title has-text-white">Add some useful review please</h1>
+<div class="control">
+    <textarea maxlength="300" onkeyup="countChars(this);" class="textarea is-link" placeholder="Add your Review here"></textarea>
+    <div class="has-text-right" id="the-count">
+        <span class="has-text-info" id="charNum">0</span>
+        <span class="has-text-info" id="maximum">/ 300</span>
+    </div>
+</div><br>
+<div class="buttons is-centered">
+    <button class="button is-primary is-light">Record it!</button>
+</div>
+
+
+
+{% endblock %}

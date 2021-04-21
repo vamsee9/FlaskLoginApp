@@ -12,9 +12,9 @@ class person(UserMixin, db.Model):
     timestamp = db.Column(db.DateTime)
 
 class Admin(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer)
     name = db.Column(db.String(1000))
-    email = db.Column(db.String(100), unique=True)
+    email = db.Column(db.String(100), unique=True, primary_key=True)
     password = db.Column(db.String(100))
     timestamp = db.Column(db.DateTime)
 
