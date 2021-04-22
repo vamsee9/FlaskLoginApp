@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="table-container columns is-centered txt-center">
+    <table class="table is-bordered is-striped is-hoverable has-text-left"> 
+        <tr>
+            <th>reviewed by</th>
+            <td>{{reviewer}}</td>
+        </tr>
+        <tr>
+            <th>ISBN</th>
+            <td>{{isbn}}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{title}}</td>
+        </tr>
+        <tr>
+            <th>Author</th>
+            <td>{{author}}</td>
+        </tr>
+        <tr>
+            <th>Year</th>
+            <td>{{year}}</td>
+        </tr>
+        <tr>
+            <th>Rating</th>
+            <td>{{rating}}</td>
+        </tr>
+        <tr>
+            <th>Review</th>
+            <td>{{review}}</td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}

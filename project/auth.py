@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
-from .models import books, person, Admin
+from .models import books, person, Admin, reviews
 from datetime import datetime
 from . import db
 
@@ -132,3 +132,22 @@ def search():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+
+@auth.route('/review/<string:id>', methods=['POST'])
+def review(id):
+    reviewer = request.form.get('reviewer')
+    rating = request.form.get('star')
+    review = request.form.get('review')
+    detail = books.query.all()
+    for i in detail:
+        if id == i.isbn:
+           title = i.title
+           author = i.author
+           year = i.year
+
+    rev = reviews(reviewer=reviewer, isbn=id, rating=rating, review=review)
+    db.session.add(rev)
+    db.session.commit()
+
+    return render_template('review.html', reviewer=reviewer, isbn=id, title=title, author=author, year=year, rating=rating, review=review)

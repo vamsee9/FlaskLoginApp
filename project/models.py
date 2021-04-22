@@ -24,3 +24,10 @@ class books(UserMixin, db.Model):
     author = db.Column(db.String(1000))
     year = db.Column(db.String(100))
 
+class reviews(db.Model):
+    reviewer = db.Column(db.String(80))
+    isbn = db.Column(db.String(80), primary_key=True)
+    rating = db.Column(db.String(80))
+    review = db.Column(db.String(80))
+
+    
