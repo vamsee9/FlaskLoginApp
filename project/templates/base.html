@@ -50,7 +50,7 @@
                 <div class="navbar-end">
                     {% endif %}
                     {% if current_user.is_authenticated %}
-                    <a href="{{url_for('main.shelf')}}" class="navbar-item has-text-info"> 🌟 My Shelf
+                    <a href="{{url_for('auth.shelf')}}" class="navbar-item has-text-info"> 🌟 My Shelf
                     </a>
                     <a href="{{ url_for('main.index') }}" class="navbar-item has-text-info">
                         🏠 Home

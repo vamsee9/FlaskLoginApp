@@ -33,11 +33,7 @@ def book(id):
     return render_template('book.html' ,id=id, title=title, author=author, year=year)
 
 
-@main.route('/shelf')
-def shelf():
-    b = bookshelf.query.all()
-    
-    return render_template('shelf.html', book=b)
+
 
 
 @errors.app_errorhandler(401)

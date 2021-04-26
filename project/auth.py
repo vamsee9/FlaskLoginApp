@@ -153,17 +153,35 @@ def review(id, title):
     
     return render_template('review.html', reviewer=reviewer, isbn=id, title=title, author=author, year=year, rating=rating, review=review)
 
-@auth.route('/shelf', methods=['POST'])
-def shelf():
-    reviewer = request.form.get('reviewer')
-    book = request.form.get('title')
 
-    sh = bookshelf(reviewer=reviewer, book=book)
+# @auth.route('/shelf')
+# def shelf():
+#     b = bookshelf.query.all()
+    
+#     return render_template('shelf.html', book=b)
+
+@auth.route("/shelf")
+def shelf():
+    b = bookshelf.query.all()
+    # r = request.form.get('reviewer')
+    # t= request.form.get('title')
+    title = "Truly Madly Guilty"
+    return render_template("shelf.html", b=b, title=title)
+
+
+@auth.route('/shelf1', methods=['POST'])
+def shelf1():
+    print("hello")
+    reviewer = request.form.get('reviewer')
+    title = request.form.get('title')
+
+    sh = bookshelf(reviewer=reviewer, book=title)
     db.session.add(sh)
     db.session.commit()
     
+    b = bookshelf.query.all()
 
-    return render_template ('shelf.html', reviewer=reviewer, book=book)
+    return render_template ('shelf.html', reviewer=reviewer, book=b, title=title)
 
 
 @auth.route("/delete/<string:book>")
