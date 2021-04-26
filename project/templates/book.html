@@ -30,18 +30,11 @@
         </tr>
         <tr>
 
-            <form action="/review/{{id}}" method="POST">
+            <form action="/review/{{id}}/{{title}}" method="POST">
                 <th>Rate this "{{title}}" book 👉</th>
                 <td>
-                    <h5 class="subtitle is-5">reviewer name</h5>
-                    <div class="field">
-                        <div class="control has-icons-left has-icons-right">
-                            <input class="input is-medium" type="text" aria-required="true" name="reviewer"
-                                placeholder="reviewer Name" autofocus=""><span class="icon is-small is-left">
-                                👱
-                            </span>
-                        </div>
-                    </div>
+                    <h5 class="subtitle is-5">reviewer name : <strong>"{{current_user.name}}"</strong></h5>
+
                     <div class="rating">
                         <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
                         <label for="star5">☆</label>
@@ -70,10 +63,38 @@
                     <div class="buttons is-centered">
                         <button class="button is-primary is-light">Record it!</button>
                     </div>
+
+                    <br>
+
             </form>
             </td>
         </tr>
     </table>
+</div>
+
+<form action="/shelf" method="POST">
+
+    <h5 class="subtitle is-5 has-text-white">reviewer name : </h5>
+    <p class="control in">
+        <input class="input is-static has-text-white" type="text" name="reviewer" value="{{current_user.name}}" readonly>
+    </p>
+    
+    <h5 class="subtitle is-5 has-text-white">Book Title : </h5>
+    <p class="control in">
+        <input class="input is-static has-text-white" type="text" name="title" value="{{title}}" readonly>
+    </p><br>
+    
+    <div class="buttons is-left btn">
+        <span class="icon is-small is-left"><button class="button is-success is-light" name="shelf" value="Yes">
+                <i class="fas fa-shopping-cart"></i>&nbsp;
+        </span> Add book to shelf</button>
+    </div><br>
+</form>
+<div class="buttons is-left btn">
+    <a href="{{url_for('main.index')}}">
+        <span class="icon is-small is-left"><button class="button is-warning is-light" name="shelf" value="No">
+                <i class="fas fa-chevron-left"></i>&nbsp;
+        </span> continue shopping</button></a>
 </div>
 
 {% endblock %}

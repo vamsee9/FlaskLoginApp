@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title has-text-white">
+    <i>Hello</i> {{current_user.name}}! here are you favorite books
+</h1><br>
+<div class="table-container columns is-centered txt-center">
+
+    <table class="table is-bordered is-striped is-hoverable has-text-left">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        {% for i in book %}
+        <tbody>
+
+            <tr>
+
+
+                <td>{{i.book}}</td>
+                <td><a href="/delete/{{i.book}}" class="button is-danger is-light">delete</a></td>
+
+            </tr>
+
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

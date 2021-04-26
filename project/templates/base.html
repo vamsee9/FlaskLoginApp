@@ -34,31 +34,38 @@
                 <span aria-hidden="true"></span>
             </a>
         </div>
-        <div>
+        <div class="container">
             <div id="NavMenu" class="navbar-menu">
-                <div class="navbar-end">
-                    {% if current_user.is_authenticated %}
-                    <form action="/search" , method="POST">
-                        <div class="field has-addons search">
-                            <div class="control c-s">
-                                <input class="input" name="search" type="text" placeholder="Find a book with isbn id">
-                            </div>
-                            <button class="button is-info">
-                                🔍 Search
-                            </button>
+                {% if current_user.is_authenticated %}
+                <form action="/search" , method="POST">
+                    <div class="field has-addons search">
+                        <div class="control c-s">
+                            <input class="input" name="search" type="text" placeholder="Author/ISBN/Title">
                         </div>
-                    </form>
+                        <button class="button is-info">
+                            🔍 Search
+                        </button>
+                    </div>
+                </form>
+                <div class="navbar-end">
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                    <a href="{{url_for('main.shelf')}}" class="navbar-item has-text-info"> 🌟 My Shelf
+                    </a>
                     <a href="{{ url_for('main.index') }}" class="navbar-item has-text-info">
                         🏠 Home
                     </a>
                     {% endif %}
                     {% if current_user.is_authenticated %}
+                    {% if current_user.name %}
                     <a href="{{ url_for('main.profile') }}" class="navbar-item has-text-info">
-                        👱 {{uname}}
+                        👱 {{current_user.name}}
                     </a>
                     {% endif %}
+                    {% endif %}
+
                     {% if not current_user.is_authenticated %}
-                    <a href="{{ url_for('auth.login') }}" class="navbar-item has-text-info">
+                    <a href="{{ url_for('auth.login') }}" class="navbar-item has-text-info navbar-end">
                         🔓 Login
                     </a>
                     <a href="{{ url_for('auth.signup') }}" class="navbar-item has-text-info">

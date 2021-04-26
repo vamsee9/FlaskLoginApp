@@ -14,15 +14,19 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 .search {
-  margin-left: 400px;
-  margin-top  : 15px;
-  margin-bottom: 15px;
-  margin-right  : 400px;
-  width: 400px;
+  /* margin-left: 400px; */
+  margin-top  : 10px;
+  margin-bottom: 10px;
+  /* margin-right  : 100px; */
+  width: auto;
 }
 
+.bn{
+  margin-top: 15px;
+} 
+
 .c-s{
-   width: 600px;
+   width: 850px;
 }
 
 #loggedIn {
@@ -98,4 +102,17 @@ textarea {
     float: right;
     padding: 0.1rem 0 0 0;
     font-size: 0.875rem;
+}
+
+
+.btn{
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+.in{
+  padding-left: 370px;
+  padding-right: 390px;
 }

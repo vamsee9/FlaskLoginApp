@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
-from .models import books, person, Admin, reviews
+from .models import books, bookshelf, person, Admin, reviews
 from datetime import datetime
 from . import db
 
@@ -134,8 +134,8 @@ def logout():
     return redirect(url_for('main.index'))
 
 
-@auth.route('/review/<string:id>', methods=['POST'])
-def review(id):
+@auth.route('/review/<string:id>/<string:title>', methods=['POST'])
+def review(id, title):
     reviewer = request.form.get('reviewer')
     rating = request.form.get('star')
     review = request.form.get('review')
@@ -149,5 +149,31 @@ def review(id):
     rev = reviews(reviewer=reviewer, isbn=id, rating=rating, review=review)
     db.session.add(rev)
     db.session.commit()
-
+        
+    
     return render_template('review.html', reviewer=reviewer, isbn=id, title=title, author=author, year=year, rating=rating, review=review)
+
+@auth.route('/shelf', methods=['POST'])
+def shelf():
+    reviewer = request.form.get('reviewer')
+    book = request.form.get('title')
+
+    sh = bookshelf(reviewer=reviewer, book=book)
+    db.session.add(sh)
+    db.session.commit()
+    
+
+    return render_template ('shelf.html', reviewer=reviewer, book=book)
+
+
+@auth.route("/delete/<string:book>")
+def delete(book):
+    print(book)
+    title_delete = bookshelf.query.get_or_404(book)
+
+    
+    db.session.delete(title_delete)
+    db.session.commit()
+    return render_template("shelf.html")
+   
+

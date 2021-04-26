@@ -18,7 +18,7 @@ class Admin(UserMixin, db.Model):
     password = db.Column(db.String(100))
     timestamp = db.Column(db.DateTime)
 
-class books(UserMixin, db.Model):
+class books(db.Model):
     isbn = db.Column(db.String(100), primary_key=True)
     title = db.Column(db.String(1000))
     author = db.Column(db.String(1000))
@@ -30,4 +30,7 @@ class reviews(db.Model):
     rating = db.Column(db.String(80))
     review = db.Column(db.String(80))
 
+class bookshelf(db.Model):
     
+    reviewer = db.Column(db.String(100))
+    book = db.Column(db.String(100), primary_key=True)
