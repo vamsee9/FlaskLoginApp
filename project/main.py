@@ -1,4 +1,4 @@
-from project.models import books, bookshelf, person
+from project.models import books, person
 from flask import Blueprint, render_template
 from flask_login import login_required, current_user
 
@@ -31,8 +31,6 @@ def book(id):
            author = i.author
            year = i.year
     return render_template('book.html' ,id=id, title=title, author=author, year=year)
-
-
 
 
 

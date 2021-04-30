@@ -1,4 +1,6 @@
+from sqlalchemy import or_
 from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask.json import jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from .models import books, bookshelf, person, Admin, reviews
@@ -119,12 +121,53 @@ def adminsignup_post():
     return redirect(url_for('auth.admin'))
 
 
+
 @auth.route('/search', methods=['POST'])
 def search():
     isbn = request.form.get("search")
 
     book = books.query.all()
     return render_template('profile.html', book=book, name=isbn)
+
+
+@auth.route('/api/search/<string:keyword>', methods=['GET', 'POST'])
+def search1(keyword):
+    b = books.query.filter(or_(books.isbn == keyword, books.author ==
+                           keyword, books.title == keyword, books.year == keyword))
+    l = []
+    flag=0
+    for i in b:
+        dic = {}
+        dic["isbn"] = i.isbn
+        dic["author"] = i.author
+        dic["title"] = i.title
+        dic["year"] = i.year
+        l.append(dic)
+        flag=1
+    if flag==0:
+        return jsonify({"books": "Book not found"}), 404
+
+    return jsonify({"books": l}), 200
+    
+
+@auth.route("/api/review/<string:w>", methods=["GET", "POST"])
+def review1(w):
+    #a = reviews.query.all()
+    a = reviews.query.filter(reviews.reviewer == w)
+    b = []
+    flag = 0
+    for i in a:
+        d = {}
+        d["reviewer"] = i.reviewer
+        d["isbn"] = i.isbn
+        d["rating"] = i.rating
+        d["review"] = i.review
+        b.append(d)
+        flag = 1
+    if flag == 0:
+        return jsonify({"Error": "Reviews not found"}), 404
+    return jsonify({"Review": b}), 200
+
 
 
 @auth.route('/logout')
@@ -154,24 +197,14 @@ def review(id, title):
     return render_template('review.html', reviewer=reviewer, isbn=id, title=title, author=author, year=year, rating=rating, review=review)
 
 
-# @auth.route('/shelf')
-# def shelf():
-#     b = bookshelf.query.all()
-    
-#     return render_template('shelf.html', book=b)
-
 @auth.route("/shelf")
 def shelf():
     b = bookshelf.query.all()
-    # r = request.form.get('reviewer')
-    # t= request.form.get('title')
-    title = "Truly Madly Guilty"
-    return render_template("shelf.html", b=b, title=title)
+    return render_template("shelf.html", b=b)
 
 
 @auth.route('/shelf1', methods=['POST'])
 def shelf1():
-    print("hello")
     reviewer = request.form.get('reviewer')
     title = request.form.get('title')
 
@@ -193,5 +226,3 @@ def delete(book):
     db.session.delete(title_delete)
     db.session.commit()
     return render_template("shelf.html")
-   
-

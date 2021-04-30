@@ -1,8 +1,6 @@
 from flask_login import UserMixin
 from . import db
 
-
-
 class person(UserMixin, db.Model):
     # primary keys are required by SQLAlchemy
     id = db.Column(db.Integer, primary_key=True)
@@ -31,6 +29,5 @@ class reviews(db.Model):
     review = db.Column(db.String(80))
 
 class bookshelf(db.Model):
-    
     reviewer = db.Column(db.String(100))
     book = db.Column(db.String(100), primary_key=True)
